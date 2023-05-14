@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_rupiah/quiz.dart';
-import 'package:game_rupiah/result.dart';
+import 'package:game_rupiah/quiz/quiz.dart';
+import 'package:game_rupiah/quiz/result.dart';
 
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
@@ -83,14 +83,6 @@ class _Index extends State<Index> {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-
-    print(score);
-    print(_questionIndex);
-    if (_questionIndex < _questions.length) {
-      print('We have more questions!');
-    } else {
-      print('No more questions!');
-    }
   }
 
   @override

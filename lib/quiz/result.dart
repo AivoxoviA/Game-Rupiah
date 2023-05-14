@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
@@ -13,17 +11,14 @@ class Result extends StatelessWidget {
     String resultText;
     if (resultScore >= 41) {
       resultText = 'You are awesome!';
-      print(resultScore);
     } else if (resultScore >= 31) {
       resultText = 'Pretty likeable!';
-      print(resultScore);
     } else if (resultScore >= 21) {
       resultText = 'You need to work more!';
     } else if (resultScore >= 1) {
       resultText = 'You need to work hard!';
     } else {
       resultText = 'This is a poor score!';
-      print(resultScore);
     }
     return resultText;
   }
@@ -43,7 +38,7 @@ class Result extends StatelessWidget {
             'Score ' '$resultScore',
             style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
-          ), //Text
+          ),
           TextButton(
             onPressed: () {
               resetHandler();
@@ -57,18 +52,8 @@ class Result extends StatelessWidget {
               ),
             ),
           ),
-          // FlatButton is deprecated and should not be used
-          // Use TextButton instead
-
-          // FlatButton(
-          // child: Text(
-          //	 'Restart Quiz!',
-          // ), //Text
-          // textColor: Colors.blue,
-          // onPressed: resetHandler(),
-          // ), //FlatButton
-        ], //<Widget>[]
-      ), //Column
-    ); //Center
+        ],
+      ),
+    );
   }
 }
