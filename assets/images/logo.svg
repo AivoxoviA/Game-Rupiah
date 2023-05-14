@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/jon/workspace/flutter/test/game_rupiah/assets/images/logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     width="512px"
+     inkscape:zoom="0.90510662"
+     inkscape:cx="251.3516"
+     inkscape:cy="257.42824"
+     inkscape:window-width="1324"
+     inkscape:window-height="748"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path35"
+       style="fill:#ffbe00;stroke-width:0.768157;fill-opacity:1"
+       d="M 135.46666,67.73333 A 67.73333,67.73333 0 0 1 67.73333,135.46666 67.73333,67.73333 0 0 1 0,67.73333 67.73333,67.73333 0 0 1 67.73333,0 67.73333,67.73333 0 0 1 135.46666,67.73333 Z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:Nakula;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;-inkscape-font-specification:Nakula;font-stretch:normal;font-variant:normal"
+       x="50.071705"
+       y="34.059036"
+       id="text16295"><tspan
+         sodipodi:role="line"
+         id="tspan16293"
+         style="stroke-width:0.264583;-inkscape-font-specification:Nakula;font-family:Nakula;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+         x="50.071705"
+         y="34.059036" /></text>
+    <g
+       id="g52896"
+       transform="matrix(1.5691144,0,0,1.5090194,-27.242514,-14.571353)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:83.3779px;line-height:1.25;font-family:sans-serif;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:2.08445;stroke-opacity:1"
+         x="24.275717"
+         y="74.175781"
+         id="text20875"><tspan
+           sodipodi:role="line"
+           id="tspan20873"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Nakula;-inkscape-font-specification:Nakula;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:2.08445;stroke-opacity:1"
+           x="24.275717"
+           y="74.175781">R</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:76.286px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0.486444;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="58.640415"
+         y="96.215057"
+         id="text27888"><tspan
+           id="tspan27886"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Nakula;-inkscape-font-specification:Nakula;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0.486444;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           x="58.640415"
+           y="96.215057"
+           sodipodi:role="line">P</tspan></text>
+    </g>
+  </g>
+</svg>
