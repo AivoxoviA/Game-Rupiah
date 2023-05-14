@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'daftar_uang_page.dart';
+import 'index.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -20,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = Placeholder();
+        page = Index();
         break;
       case 1:
         page = DaftarUangPage();
