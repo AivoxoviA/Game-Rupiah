@@ -1,147 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:game_rupiah/quiz/quiz.dart';
-import 'package:game_rupiah/quiz/result.dart';
+import 'package:game_rupiah/layar_utama/splash.dart';
+import 'package:provider/provider.dart';
+import 'layar_utama/layar_quiz.dart';
+import 'layar_utama/menu_utama.dart';
 
-class Index extends StatefulWidget {
+class LayarUtama extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
+    var indexState = context.watch<IndexState>();
+    Widget screen;
+    switch (indexState.getState()) {
+      case 0:
+        screen = SplashScreen();
+        break;
+      case 1:
+        screen = MenuUtama();
+        break;
+      case 2:
+        screen = LayarQuiz();
+        break;
+      default:
+        throw UnimplementedError('no screen for the ${indexState.getState()}');
+    }
+    var mainArea = ColoredBox(
+        color: colorScheme.surfaceVariant,
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 200),
+          child: Center(child: screen),
+        ));
+    return mainArea;
+  }
+}
+
+class Index extends StatelessWidget {
   const Index({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _Index();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => IndexState(),
+      child: MaterialApp(
+        title: 'Layar Utama',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        ),
+        home: LayarUtama(),
+      ),
+    );
+
+  }
 }
 
-class _Index extends State<Index> {
-  var _visible = false;
-  var _quiz = false;
+class IndexState extends ChangeNotifier {
+  var state = 0;
 
-  final _questions = const [
-    {
-      'questionText': 'Q1. Who created Flutter?',
-      'answers': [
-        {'text': 'Facebook', 'score': -2},
-        {'text': 'Adobe', 'score': -2},
-        {'text': 'Google', 'score': 10},
-        {'text': 'Microsoft', 'score': -2},
-      ],
-    },
-    {
-      'questionText': 'Q2. What is Flutter?',
-      'answers': [
-        {'text': 'Android Development Kit', 'score': -2},
-        {'text': 'IOS Development Kit', 'score': -2},
-        {'text': 'Web Development Kit', 'score': -2},
-        {
-          'text':
-              'SDK to build beautiful IOS, Android, Web & Desktop Native Apps',
-          'score': 10
-        },
-      ],
-    },
-    {
-      'questionText': ' Q3. Which programming language is used by Flutter',
-      'answers': [
-        {'text': 'Ruby', 'score': -2},
-        {'text': 'Dart', 'score': 10},
-        {'text': 'C++', 'score': -2},
-        {'text': 'Kotlin', 'score': -2},
-      ],
-    },
-    {
-      'questionText': 'Q4. Who created Dart programming language?',
-      'answers': [
-        {'text': 'Lars Bak and Kasper Lund', 'score': 10},
-        {'text': 'Brendan Eich', 'score': -2},
-        {'text': 'Bjarne Stroustrup', 'score': -2},
-        {'text': 'Jeremy Ashkenas', 'score': -2},
-      ],
-    },
-    {
-      'questionText':
-          'Q5. Is Flutter for Web and Desktop available in stable version?',
-      'answers': [
-        {
-          'text': 'Yes',
-          'score': -2,
-        },
-        {'text': 'No', 'score': 10},
-      ],
-    },
-  ];
-
-  var _questionIndex = 0;
-  var _totalScore = 0;
-
-  void _resetQuiz() {
-    setState(() {
-      _questionIndex = 0;
-      _totalScore = 0;
-    });
+  getState() {
+    return state;
   }
 
-  void _answerQuestion(int score) {
-    _totalScore += score;
-
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setVisible();
-    setState(() {
-      _quiz = false;
-    });
-  }
-
-  void setVisible() {
-    Future.delayed(const Duration(milliseconds: 100)).then((value) {
-      setState(() {
-        _visible = true;
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_quiz) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Geeks for Geeks'),
-          backgroundColor: const Color(0xFF00E676),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child:
-            _questionIndex < _questions.length
-            ? Quiz(
-              answerQuestion: _answerQuestion,
-              questionIndex: _questionIndex,
-              questions: _questions,
-            )
-            : Result(_totalScore, _resetQuiz),
-        ),
-      ),
-    );
-    }
-    return Scaffold(
-      body: Center(
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 2000),
-          opacity: _visible ? 1.0 : 0.0,
-          child: SizedBox(
-            width: 256,
-            height: 256,
-            child: Image.asset('assets/images/logo.png'),
-          ),
-          onEnd: () {
-            setState(() {
-              _quiz = true;
-            });
-          },
-        ),
-      ),
-    );
+  void upState() {
+    state++;
+    notifyListeners();
   }
 }

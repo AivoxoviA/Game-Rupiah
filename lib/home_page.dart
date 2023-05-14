@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     List menu = [
-      Menu('Beranda'),
+      Menu('Kuis'),
       Menu('Daftar Uang'),
     ];
 
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: BottomNavigationBar(
                     items: [
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
+                        icon: Icon(Icons.quiz_outlined),
                         label: menu[0].title,
                       ),
                       BottomNavigationBarItem(
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     extended: constraints.maxWidth >= 600,
                     destinations: [
                       NavigationRailDestination(
-                        icon: Icon(Icons.home),
+                        icon: Icon(Icons.quiz_outlined),
                         label: Text(menu[0].title),
                       ),
                       NavigationRailDestination(
