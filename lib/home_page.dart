@@ -4,7 +4,7 @@ import 'daftar_uang_page.dart';
 import 'index.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -81,11 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     destinations: [
                       NavigationRailDestination(
                         icon: Icon(Icons.home),
-                        label: menu[0].title,
+                        label: Text(menu[0].title),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.list),
-                        label: menu[1].title,
+                        label: Text(menu[1].title),
                       ),
                     ],
                     selectedIndex: selectedIndex,
