@@ -17,3 +17,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
+    - assets/data/uang.json
+    - assets/images/uang/
