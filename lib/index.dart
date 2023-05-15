@@ -54,9 +54,19 @@ class Index extends StatelessWidget {
 
 class IndexState extends ChangeNotifier {
   var state = 0;
+  var indexQuiz = Kuis(-1, 'judul', Colors.black);
+
+  getQuiz() {
+    return indexQuiz;
+  }
 
   getState() {
     return state;
+  }
+
+  void setQuiz(quiz) {
+    indexQuiz = quiz;
+    notifyListeners();
   }
 
   void up() {

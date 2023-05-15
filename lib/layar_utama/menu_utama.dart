@@ -9,7 +9,7 @@ class MenuUtama extends StatefulWidget {
 
 class _MenuUtamaState extends State<MenuUtama> {
   OutlinedButton _buildButtonColumn(
-      BuildContext ctx, Color color, AssetImage img, String label) {
+      quiz, BuildContext ctx) {
     var state = ctx.watch<IndexState>();
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
@@ -17,6 +17,7 @@ class _MenuUtamaState extends State<MenuUtama> {
         shape: BeveledRectangleBorder(),
       ),
       onPressed: () {
+        state.setQuiz(quiz);
         state.up();
       },
       child: Container(
@@ -26,16 +27,16 @@ class _MenuUtamaState extends State<MenuUtama> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              image: img,
+              image: AssetImage('assets/images/main_menu/main_menu_${quiz.id}.png'),
               height: 64,
             ),
             Container(
               margin: const EdgeInsets.only(top: 16),
               child: Text(
-                label,
+                quiz.judul,
                 style: TextStyle(
                   fontSize: 24,
-                  color: color,
+                  color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -46,9 +47,16 @@ class _MenuUtamaState extends State<MenuUtama> {
     );
   }
 
+
+  List kuis = [
+    Kuis(0, 'Nominal', Color.fromARGB(255, 0, 139, 5)),
+    Kuis(1, 'Gambar', Color.fromARGB(255, 130, 115, 0)),
+    Kuis(2, '+/-', Color.fromARGB(255, 130, 50, 0)),
+    Kuis(3, '×/÷', Color.fromARGB(255, 130, 0, 0)),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    Color color = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: AppBar(
         title: Text('Kuis'),
@@ -69,28 +77,26 @@ class _MenuUtamaState extends State<MenuUtama> {
                   flex: 1,
                   child: Container(
                     margin: EdgeInsets.all(8.0),
-                    color: Colors.green,
+                    color: kuis[0].warna,
                     child: Expanded(
-                        child: _buildButtonColumn(
-                            context,
-                            Colors.white,
-                            AssetImage(
-                                'assets/images/main_menu/main_menu_0.png'),
-                            'Nominal')),
+                      child: _buildButtonColumn(
+                        kuis[0],
+                        context,
+                      )
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Container(
-                    color: Color.fromARGB(255, 123, 129, 4),
+                    color: kuis[1].warna,
                     margin: EdgeInsets.all(8.0),
                     child: Expanded(
-                        child: _buildButtonColumn(
-                            context,
-                            Colors.white,
-                            AssetImage(
-                                'assets/images/main_menu/main_menu_1.png'),
-                            'Gambar')),
+                      child: _buildButtonColumn(
+                        kuis[1],
+                        context,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -100,27 +106,27 @@ class _MenuUtamaState extends State<MenuUtama> {
             child: Row(
               children: [
                 Expanded(
-                    flex: 1,
-                    child: Container(
-                      color: Color.fromARGB(255, 165, 94, 0),
-                      margin: EdgeInsets.all(8.0),
-                      child: _buildButtonColumn(
-                          context,
-                          Colors.white,
-                          AssetImage('assets/images/main_menu/main_menu_2.png'),
-                          '+/-'),
-                    )),
+                  flex: 1,
+                  child: Container(
+                    color: kuis[2].warna,
+                    margin: EdgeInsets.all(8.0),
+                    child: _buildButtonColumn(
+                      kuis[2],
+                      context,
+                    ),
+                  )
+                ),
                 Expanded(
-                    flex: 1,
-                    child: Container(
-                      color: Color.fromARGB(255, 159, 2, 2),
-                      margin: EdgeInsets.all(8.0),
-                      child: _buildButtonColumn(
-                          context,
-                          Colors.white,
-                          AssetImage('assets/images/main_menu/main_menu_3.png'),
-                          '×/÷'),
-                    )),
+                  flex: 1,
+                  child: Container(
+                    color: kuis[3].warna,
+                    margin: EdgeInsets.all(8.0),
+                    child: _buildButtonColumn(
+                      kuis[3],
+                      context,
+                    ),
+                  )
+                ),
               ],
             ),
           ),
@@ -128,4 +134,11 @@ class _MenuUtamaState extends State<MenuUtama> {
       ),
     );
   }
+}
+
+class Kuis {
+  int id;
+  String judul;
+  Color warna;
+  Kuis(this.id, this.judul, this.warna);
 }
