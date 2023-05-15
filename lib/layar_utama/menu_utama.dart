@@ -119,7 +119,7 @@ class _MenuUtamaState extends State<MenuUtama> {
                           context,
                           Colors.white,
                           AssetImage('assets/images/main_menu/main_menu_3.png'),
-                          'x/%'),
+                          '×/÷'),
                     )),
               ],
             ),
