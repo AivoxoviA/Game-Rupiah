@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:game_rupiah/index.dart';
+import 'package:provider/provider.dart';
 
-class MenuUtama extends StatelessWidget {
-  OutlinedButton _buildButtonColumn(Color color, AssetImage img, String label) {
+class MenuUtama extends StatefulWidget {
+  @override
+  State<MenuUtama> createState() => _MenuUtamaState();
+}
+
+class _MenuUtamaState extends State<MenuUtama> {
+  OutlinedButton _buildButtonColumn(
+      BuildContext ctx, Color color, AssetImage img, String label) {
+    var state = ctx.watch<IndexState>();
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         side: BorderSide(width: 0.5, color: Color.fromARGB(255, 190, 19, 96)),
         shape: BeveledRectangleBorder(),
       ),
-      onPressed: () {},
+      onPressed: () {
+        state.up();
+      },
       child: Container(
         margin: EdgeInsets.all(16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //Icon(icon, color: color, size: 72),
             Image(
               image: img,
               height: 64,
             ),
             Container(
-              margin: const EdgeInsets.only(top: 32),
+              margin: const EdgeInsets.only(top: 16),
               child: Text(
                 label,
                 style: TextStyle(
@@ -54,27 +64,27 @@ class MenuUtama extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.all(8.0),
                     child: Expanded(
-                      child: _buildButtonColumn(
-                        color, AssetImage(
-                          'assets/images/main_menu/main_menu_0.png'
-                        ), 'Tebak Nominal'
-                      )
-                    ),
+                        child: _buildButtonColumn(
+                            context,
+                            color,
+                            AssetImage(
+                                'assets/images/main_menu/main_menu_0.png'),
+                            'Nominal')),
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Container(
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.all(8.0),
                     child: Expanded(
-                      child: _buildButtonColumn(
-                        color, AssetImage(
-                          'assets/images/main_menu/main_menu_1.png'
-                        ), 'Tebak Gambar'
-                      )
-                    ),
+                        child: _buildButtonColumn(
+                            context,
+                            color,
+                            AssetImage(
+                                'assets/images/main_menu/main_menu_1.png'),
+                            'Gambar')),
                   ),
                 ),
               ],
@@ -84,27 +94,25 @@ class MenuUtama extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  flex: 1,
-                  child: Container(
-                    margin: EdgeInsets.all(16.0),
-                    child: _buildButtonColumn(
-                      color, AssetImage(
-                        'assets/images/main_menu/main_menu_2.png'
-                      ), 'Tambah Kurang'
-                    ),
-                  )
-                ),
+                    flex: 1,
+                    child: Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: _buildButtonColumn(
+                          context,
+                          color,
+                          AssetImage('assets/images/main_menu/main_menu_2.png'),
+                          '+/-'),
+                    )),
                 Expanded(
-                  flex: 1,
-                  child: Container(
-                    margin: EdgeInsets.all(16.0),
-                    child: _buildButtonColumn(
-                      color, AssetImage(
-                        'assets/images/main_menu/main_menu_3.png'
-                      ), 'Perkalian Pembagian'
-                    ),
-                  )
-                ),
+                    flex: 1,
+                    child: Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: _buildButtonColumn(
+                          context,
+                          color,
+                          AssetImage('assets/images/main_menu/main_menu_3.png'),
+                          'x/%'),
+                    )),
               ],
             ),
           ),

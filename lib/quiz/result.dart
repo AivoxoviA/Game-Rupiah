@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:game_rupiah/index.dart';
+import 'package:provider/provider.dart';
 
-class Result extends StatelessWidget {
+class Result extends StatefulWidget {
   final int resultScore;
   final Function resetHandler;
 
   const Result(this.resultScore, this.resetHandler, {Key? key})
       : super(key: key);
 
+  @override
+  State<Result> createState() => _ResultState();
+}
+
+class _ResultState extends State<Result> {
   String get resultPhrase {
     String resultText;
-    if (resultScore >= 41) {
+    if (widget.resultScore >= 41) {
       resultText = 'You are awesome!';
-    } else if (resultScore >= 31) {
+    } else if (widget.resultScore >= 31) {
       resultText = 'Pretty likeable!';
-    } else if (resultScore >= 21) {
+    } else if (widget.resultScore >= 21) {
       resultText = 'You need to work more!';
-    } else if (resultScore >= 1) {
+    } else if (widget.resultScore >= 1) {
       resultText = 'You need to work hard!';
     } else {
       resultText = 'This is a poor score!';
@@ -25,6 +32,7 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var state = context.watch<IndexState>();
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,19 +43,19 @@ class Result extends StatelessWidget {
             textAlign: TextAlign.center,
           ), //Text
           Text(
-            'Score ' '$resultScore',
+            'Score ' '${widget.resultScore}',
             style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           TextButton(
             onPressed: () {
-              resetHandler();
+              state.reset();
             },
             child: Container(
               color: Colors.green,
               padding: const EdgeInsets.all(14),
               child: const Text(
-                'Restart Quiz',
+                'OK',
                 style: TextStyle(color: Colors.white),
               ),
             ),

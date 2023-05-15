@@ -49,7 +49,6 @@ class Index extends StatelessWidget {
         home: LayarUtama(),
       ),
     );
-
   }
 }
 
@@ -60,8 +59,13 @@ class IndexState extends ChangeNotifier {
     return state;
   }
 
-  void upState() {
+  void up() {
     state++;
+    notifyListeners();
+  }
+
+  void reset() {
+    state = 0;
     notifyListeners();
   }
 }
