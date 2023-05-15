@@ -20,3 +20,4 @@ flutter:
     - assets/images/logo.png
     - assets/data/uang.json
     - assets/images/uang/
+    - assets/images/main_menu/

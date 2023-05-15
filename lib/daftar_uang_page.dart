@@ -30,6 +30,7 @@ class _DaftarUangPageState extends State<DaftarUangPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Uang'),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(25),
