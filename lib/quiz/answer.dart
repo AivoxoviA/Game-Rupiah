@@ -11,19 +11,27 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          selectHandler();
-        },
-        style: ButtonStyle(
-        textStyle:
-          MaterialStateProperty.all(
-            const TextStyle(color: Colors.white)
+      child: Container(
+        margin: EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          onPressed: () {
+            selectHandler();
+          },
+          style: ButtonStyle(
+          textStyle:
+            MaterialStateProperty.all(
+              const TextStyle(color: Colors.white)
+            ),
+          backgroundColor: MaterialStateProperty.all(Colors.green)),
+          child: SizedBox(
+            height: 64,
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/uang/uang-$answerText.jpg'
+              )
+            )
           ),
-        backgroundColor: MaterialStateProperty.all(Colors.green)),
-        child: SizedBox(
-          height: 64,
-          child: Image.asset('assets/images/uang/uang-$answerText.jpg')
         ),
       ),
     );
