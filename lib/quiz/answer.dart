@@ -21,7 +21,10 @@ class Answer extends StatelessWidget {
             const TextStyle(color: Colors.white)
           ),
         backgroundColor: MaterialStateProperty.all(Colors.green)),
-        child: Text(answerText),
+        child: SizedBox(
+          height: 64,
+          child: Image.asset('assets/images/uang/uang-$answerText.jpg')
+        ),
       ),
     );
   }

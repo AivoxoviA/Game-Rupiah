@@ -41,7 +41,7 @@ class _ResultState extends State<Result> {
             resultPhrase,
             style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
-          ), //Text
+          ),
           Text(
             'Score ' '${widget.resultScore}',
             style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
