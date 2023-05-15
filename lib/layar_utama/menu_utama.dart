@@ -58,6 +58,10 @@ class _MenuUtamaState extends State<MenuUtama> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
+          Image(
+            image: AssetImage('assets/images/main_menu/mudah_sulit.png'),
+            height: 48,
+          ),
           Expanded(
             child: Row(
               children: [
@@ -65,10 +69,11 @@ class _MenuUtamaState extends State<MenuUtama> {
                   flex: 1,
                   child: Container(
                     margin: EdgeInsets.all(8.0),
+                    color: Colors.green,
                     child: Expanded(
                         child: _buildButtonColumn(
                             context,
-                            color,
+                            Colors.white,
                             AssetImage(
                                 'assets/images/main_menu/main_menu_0.png'),
                             'Nominal')),
@@ -77,11 +82,12 @@ class _MenuUtamaState extends State<MenuUtama> {
                 Expanded(
                   flex: 1,
                   child: Container(
+                    color: Color.fromARGB(255, 123, 129, 4),
                     margin: EdgeInsets.all(8.0),
                     child: Expanded(
                         child: _buildButtonColumn(
                             context,
-                            color,
+                            Colors.white,
                             AssetImage(
                                 'assets/images/main_menu/main_menu_1.png'),
                             'Gambar')),
@@ -96,20 +102,22 @@ class _MenuUtamaState extends State<MenuUtama> {
                 Expanded(
                     flex: 1,
                     child: Container(
+                      color: Color.fromARGB(255, 165, 94, 0),
                       margin: EdgeInsets.all(8.0),
                       child: _buildButtonColumn(
                           context,
-                          color,
+                          Colors.white,
                           AssetImage('assets/images/main_menu/main_menu_2.png'),
                           '+/-'),
                     )),
                 Expanded(
                     flex: 1,
                     child: Container(
+                      color: Color.fromARGB(255, 159, 2, 2),
                       margin: EdgeInsets.all(8.0),
                       child: _buildButtonColumn(
                           context,
-                          color,
+                          Colors.white,
                           AssetImage('assets/images/main_menu/main_menu_3.png'),
                           'x/%'),
                     )),
