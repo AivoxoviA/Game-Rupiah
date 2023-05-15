@@ -24,18 +24,42 @@ class MenuUtama extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
-    List items = [
-      _buildButtonColumn(color, Icons.money, 'Tebak Nominal'),
-      _buildButtonColumn(color, Icons.photo_size_select_actual_rounded, 'Tebak Gambar'),
-      _buildButtonColumn(color, Icons.my_library_add_outlined, 'Tambah Kurang'),
-      _buildButtonColumn(color, Icons.one_x_mobiledata, 'Kali bagi'),
-    ];
-    Widget w = GridView.count(
-      crossAxisCount: 2,
-      children: List.generate(items.length, (index) {
-        return items[index];
-      }),
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: _buildButtonColumn(
+                  color, Icons.money, 'Tebak Nominal'
+                )
+              ),
+              Expanded(
+                child: _buildButtonColumn(
+                  color, Icons.photo_size_select_actual_rounded, 'Tebak Gambar'
+                )
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: _buildButtonColumn(
+                  color, Icons.my_library_add_outlined, 'Tambah Kurang'
+                )
+              ),
+              Expanded(
+                child: _buildButtonColumn(
+                  color, Icons.one_x_mobiledata, 'Kali bagi'
+                )
+              ),
+            ],
+          ),
+        ),
+      ],
     );
-    return w;
   }
 }
