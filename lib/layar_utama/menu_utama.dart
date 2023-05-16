@@ -76,7 +76,7 @@ class _MenuUtamaState extends State<MenuUtama> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    margin: EdgeInsets.all(8.0),
+                    margin: EdgeInsets.fromLTRB(4.0, 64.0, 4.0, 8.0),
                     color: kuis[0].warna,
                     child: Expanded(
                       child: _buildButtonColumn(
@@ -90,7 +90,7 @@ class _MenuUtamaState extends State<MenuUtama> {
                   flex: 1,
                   child: Container(
                     color: kuis[1].warna,
-                    margin: EdgeInsets.all(8.0),
+                    margin: EdgeInsets.fromLTRB(4.0, 64.0, 4.0, 8.0),
                     child: Expanded(
                       child: _buildButtonColumn(
                         kuis[1],
@@ -109,7 +109,7 @@ class _MenuUtamaState extends State<MenuUtama> {
                   flex: 1,
                   child: Container(
                     color: kuis[2].warna,
-                    margin: EdgeInsets.all(8.0),
+                    margin: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 64.0),
                     child: _buildButtonColumn(
                       kuis[2],
                       context,
@@ -120,7 +120,7 @@ class _MenuUtamaState extends State<MenuUtama> {
                   flex: 1,
                   child: Container(
                     color: kuis[3].warna,
-                    margin: EdgeInsets.all(8.0),
+                    margin: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 64.0),
                     child: _buildButtonColumn(
                       kuis[3],
                       context,
