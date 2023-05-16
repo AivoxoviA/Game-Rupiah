@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = Dompet();;
+        page = Dompet();
         break;
       case 1:
         page = Index();

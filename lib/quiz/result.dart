@@ -16,16 +16,10 @@ class Result extends StatefulWidget {
 class _ResultState extends State<Result> {
   String get resultPhrase {
     String resultText;
-    if (widget.resultScore >= 41) {
-      resultText = 'You are awesome!';
-    } else if (widget.resultScore >= 31) {
-      resultText = 'Pretty likeable!';
-    } else if (widget.resultScore >= 21) {
-      resultText = 'You need to work more!';
-    } else if (widget.resultScore >= 1) {
-      resultText = 'You need to work hard!';
+    if (widget.resultScore >= 10) {
+      resultText = 'Yaayyy, kamu dapat hadiah!';
     } else {
-      resultText = 'This is a poor score!';
+      resultText = 'yahhh...';
     }
     return resultText;
   }
@@ -42,10 +36,12 @@ class _ResultState extends State<Result> {
             style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          Text(
-            'Score ' '${widget.resultScore}',
-            style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
+          widget.resultScore == 10 ? Image(
+            height: 128,
+            image: AssetImage('assets/images/uang/uang-26.png')
+          ) :  Container(
+            margin: EdgeInsets.all(16.0),
+            child: Text('Coba lagi!', textScaleFactor: 2,)
           ),
           TextButton(
             onPressed: () {
