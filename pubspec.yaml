@@ -10,6 +10,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.13.1
   provider: ^6.0.5
+  logger: ^1.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -18,6 +19,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
-    - assets/data/uang.json
+    - assets/data/
     - assets/images/uang/
     - assets/images/main_menu/

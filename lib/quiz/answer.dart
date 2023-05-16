@@ -28,7 +28,7 @@ class Answer extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(8.0),
               child: Image.asset(
-                'assets/images/uang/uang-$answerText.jpg'
+                'assets/images/uang/uang-$answerText'
               )
             )
           ),

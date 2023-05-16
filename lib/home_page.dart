@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                     currentIndex: selectedIndex,
                     onTap: (value) {
+                      if (value == selectedIndex) return;
                       setState(() {
                         selectedIndex = value;
                       });
@@ -90,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {
+                      if (value == selectedIndex) return;
                       setState(() {
                         selectedIndex = value;
                       });

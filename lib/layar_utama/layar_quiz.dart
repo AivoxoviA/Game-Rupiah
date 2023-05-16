@@ -15,7 +15,7 @@ class LayarQuiz extends StatefulWidget {
 }
 
 class _LayarQuizState extends State<LayarQuiz> {
-  List dataUang = [];
+  List mapUang = [];
 
   @override
   void initState() {
@@ -31,11 +31,17 @@ class _LayarQuizState extends State<LayarQuiz> {
     for (var i = 0; i < data.length; i++) {
       var item = data[i];
       if (item['tipe'] == 'Khusus') break;
-      var uang = Uang(item['nominal'], item['tipe'], item['judul']);
+      var uang = Uang(
+        item['nominal']
+        , item['tipe']
+        , item['judul']
+        , item['tipe'] == 'Koin' ? '$i.png' : '$i.jpg'
+      );
       dataUang_.add(uang);
     }
+
     setState(() {
-      dataUang = dataUang_;
+      mapUang = dataUang_;
     });
   }
 
@@ -60,7 +66,7 @@ class _LayarQuizState extends State<LayarQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    if (dataUang.isEmpty) {
+    if (mapUang.isEmpty) {
       return Center(
         child: Text('Loading'),
       );
@@ -68,17 +74,23 @@ class _LayarQuizState extends State<LayarQuiz> {
     var state = context.watch<IndexState>();
     var quiz = state.getQuiz();
     var questions = [];
-    var id = Random().nextInt(dataUang.length);
-    var uangRandom = dataUang.removeAt(id);
-    var idPengecoh = Random().nextInt(dataUang.length);
-    var pengecoh = dataUang[idPengecoh];
+    var id = Random().nextInt(mapUang.length);
+    var uangRandom = mapUang.removeAt(id);
+    mapUang.removeWhere((element) {
+      return element.nominal == uangRandom.nominal
+        && element.tipe == uangRandom.tipe;
+    });
+    var idPengecoh = Random().nextInt(mapUang.length);
+    var pengecoh = mapUang.elementAt(idPengecoh);
+    var answers = [
+      {'text': uangRandom.img,'score': 10,},
+      {'text': pengecoh.img, 'score': 0},
+    ];
+    answers.shuffle();
     questions.add({
       'questionText':
         uangRandom.judul,
-      'answers': [
-        {'text': id,'score': -2,},
-        {'text': idPengecoh, 'score': 10},
-      ],
+      'answers': answers,
     });
     return MaterialApp(
       home: Scaffold(
@@ -105,5 +117,6 @@ class Uang {
   int nominal;
   String tipe;
   String judul;
-  Uang(this.nominal, this.tipe, this.judul);
+  String img;
+  Uang(this.nominal, this.tipe, this.judul, this.img);
 }
