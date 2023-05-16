@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_rupiah/dompet.dart';
 
 import 'daftar_uang_page.dart';
 import 'index.dart';
@@ -12,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 0;
+  var selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,12 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = Index();
+        page = Dompet();;
         break;
       case 1:
+        page = Index();
+        break;
+      case 2:
         page = DaftarUangPage();
         break;
       default:
@@ -39,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     List menu = [
+      Menu('Dompet'),
       Menu('Kuis'),
       Menu('Daftar Uang'),
     ];
@@ -54,12 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: BottomNavigationBar(
                     items: [
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.quiz_outlined),
+                        icon: Icon(Icons.wallet),
                         label: menu[0].title,
                       ),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.list),
+                        icon: Icon(Icons.quiz_outlined),
                         label: menu[1].title,
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.list),
+                        label: menu[2].title,
                       ),
                     ],
                     currentIndex: selectedIndex,
@@ -87,6 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       NavigationRailDestination(
                         icon: Icon(Icons.list),
                         label: Text(menu[1].title),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.list),
+                        label: Text(menu[2].title),
                       ),
                     ],
                     selectedIndex: selectedIndex,
