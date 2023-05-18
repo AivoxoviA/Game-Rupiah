@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_rupiah/dompet.dart';
+import 'package:game_rupiah/dompet_app.dart';
+import 'package:game_rupiah/models/dompet.dart';
 
 import 'daftar_uang_page.dart';
 import 'index.dart';
@@ -22,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = Dompet();
+        page = DompetApp(dompet: Dompet([]));
         break;
       case 1:
         page = Index();

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_rupiah/index.dart';
+import 'package:game_rupiah/models/dompet.dart';
 import 'package:provider/provider.dart';
 
 import '../quiz/quiz.dart';
@@ -106,7 +107,7 @@ class _LayarQuizState extends State<LayarQuiz> {
               questionIndex: _questionIndex,
               questions: questions,
             )
-          : Result(_totalScore, _resetQuiz),
+          : Result(_totalScore, _resetQuiz, dompet: Dompet([])),
         ),
       ),
     );

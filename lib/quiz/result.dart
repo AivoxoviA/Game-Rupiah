@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:game_rupiah/index.dart';
+import 'package:game_rupiah/main.dart';
+import 'package:game_rupiah/models/dompet.dart';
 import 'package:provider/provider.dart';
 
 class Result extends StatefulWidget {
   final int resultScore;
   final Function resetHandler;
 
-  const Result(this.resultScore, this.resetHandler, {Key? key})
+  final Dompet dompet;
+
+  const Result(this.resultScore, this.resetHandler, {Key? key, required this.dompet})
       : super(key: key);
 
   @override
@@ -22,6 +26,20 @@ class _ResultState extends State<Result> {
       resultText = 'yahhh...';
     }
     return resultText;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.resultScore >= 10) {
+      widget.dompet.read().then((dompet) {
+        setState(() {
+          dompet.uang.add(Uang(26, Pos(160, 200)));
+          dompet.write();
+          l.d(dompet.uang.length);
+        });
+      });
+    }
   }
 
   @override
