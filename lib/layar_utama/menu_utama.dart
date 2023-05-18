@@ -10,7 +10,7 @@ class MenuUtama extends StatefulWidget {
 
 class _MenuUtamaState extends State<MenuUtama> {
   OutlinedButton _buildButtonColumn(
-      quiz, BuildContext ctx) {
+    quiz, BuildContext ctx) {
     var state = ctx.watch<IndexState>();
     return OutlinedButton(
       style: OutlinedButton.styleFrom(

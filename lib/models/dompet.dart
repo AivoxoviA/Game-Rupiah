@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:game_rupiah/main.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,15 +15,6 @@ class Dompet {
   factory Dompet.fromJson(Map<String, dynamic> json) => _$DompetFromJson(json);
 
   Map<String, dynamic> toJson() => _$DompetToJson(this);
-
-  static Future<Dompet> load() async{
-    final String jsonString = await rootBundle.loadString(
-      'assets/data/dompet.json'
-    );
-    final dompetJson = await json.decode(jsonString);
-    l.d(dompetJson);
-    return Dompet.fromJson(dompetJson);
-  }
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -50,6 +40,7 @@ class Dompet {
   Future<File> write() async {
     final file = await _localFile;
     String jsonString = jsonEncode(toJson());
+    l.d(jsonString);
     return file.writeAsString(jsonString);
   }
 

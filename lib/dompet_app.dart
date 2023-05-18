@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:game_rupiah/main.dart';
 import 'package:game_rupiah/models/dompet.dart';
 
 class DompetApp extends StatefulWidget {
@@ -20,43 +19,56 @@ class _DompetAppState extends State<DompetApp> {
     loadData();
   }
 
+  bool loadedUangMap = false;
+  bool loadedDompet = false;
   Dompet dompet = Dompet([]);
   List _dataUang = [];
 
   AssetImage bg = AssetImage('assets/images/dompet.png');
+  var bgH = 128.0;
+
   Future<void> loadData() async {
-    final String response =
-      await rootBundle.loadString('assets/data/uang.json');
+    final String response = await rootBundle.loadString(
+      'assets/data/uang.json'
+    );
     final data = await json.decode(response);
     setState(() {
       _dataUang = data;
-      widget.dompet.read().then((value) {
+      loadedUangMap = true;
+    });
+    widget.dompet.read().then((value) {
+      setState(() {
         dompet = value;
+        loadedDompet = true;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_dataUang.isEmpty) {
+    if (!loadedUangMap && !loadedDompet) {
       return Center(child: Text('Loading...'),);
     }
     List<Widget> items = [];
     items.add(Center(
-      child: Image(image: bg),
+      child: Image(image: bg, height: bgH,),
     ));
     List uang = dompet.uang;
-    dompet.write();
     for (var i = 0; i < uang.length; i++) {
       var templateUang = _dataUang[uang[i].id];
       var img = templateUang['tipe'] == 'Koin'
       ? '${uang[i].id}.png'
       : '${uang[i].id}.jpg';
       var image = AssetImage('assets/images/uang/uang-$img');
+      var imgH = 64.0;
       var wImage = Image(
         image: image,
-        height: 64,
+        height: imgH,
       );
+      if (uang[i].pos.x == 0 && uang[i].pos.y == 0) {
+        uang[i].pos.x = MediaQuery.of(context).size.width/2 - imgH/2;
+        uang[i].pos.y = MediaQuery.of(context).size.height/2 - imgH - bgH;
+      }
       items.add(Positioned(
         left: uang[i].pos.x,
         top: uang[i].pos.y,
@@ -70,7 +82,6 @@ class _DompetAppState extends State<DompetApp> {
             });
           },
           onDragEnd: (details) {
-            l.d('drag end!');
             setState(() {
               dompet.write();
             });

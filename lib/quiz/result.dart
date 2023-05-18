@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:game_rupiah/index.dart';
-import 'package:game_rupiah/main.dart';
 import 'package:game_rupiah/models/dompet.dart';
 import 'package:provider/provider.dart';
 
@@ -34,9 +33,8 @@ class _ResultState extends State<Result> {
     if (widget.resultScore >= 10) {
       widget.dompet.read().then((dompet) {
         setState(() {
-          dompet.uang.add(Uang(26, Pos(160, 200)));
+          dompet.uang.add(Uang(26, Pos(0, 0)));
           dompet.write();
-          l.d(dompet.uang.length);
         });
       });
     }

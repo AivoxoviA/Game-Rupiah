@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game_rupiah/layar_utama/splash.dart';
 import 'package:provider/provider.dart';
 import 'layar_utama/layar_quiz.dart';
 import 'layar_utama/menu_utama.dart';
@@ -12,12 +11,9 @@ class LayarUtama extends StatelessWidget {
     Widget screen;
     switch (indexState.getState()) {
       case 0:
-        screen = SplashScreen();
-        break;
-      case 1:
         screen = MenuUtama();
         break;
-      case 2:
+      case 1:
         screen = LayarQuiz();
         break;
       default:
