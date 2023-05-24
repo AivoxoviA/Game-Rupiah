@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_rupiah/main.dart';
 import 'package:game_rupiah/models/dompet.dart';
 
 class DompetApp extends StatefulWidget {
@@ -23,6 +24,7 @@ class _DompetAppState extends State<DompetApp> {
   bool loadedDompet = false;
   Dompet dompet = Dompet([]);
   List _dataUang = [];
+  List<int> uangIds = [];
 
   AssetImage bg = AssetImage('assets/images/dompet.png');
   var bgH = 128.0;
@@ -50,35 +52,41 @@ class _DompetAppState extends State<DompetApp> {
       return Center(child: Text('Loading...'),);
     }
     List<Widget> items = [];
-    items.add(Center(
-      child: Image(image: bg, height: bgH,),
-    ));
-    List uang = dompet.uang;
-    for (var i = 0; i < uang.length; i++) {
-      var templateUang = _dataUang[uang[i].id];
+    for (var i = 0; i < dompet.uang.length; i++) {
+      if (!uangIds.contains(i)) {
+        uangIds.add(i);
+      }
+      var templateUang = _dataUang[dompet.uang[i].id];
       var img = templateUang['tipe'] == 'Koin'
-      ? '${uang[i].id}.png'
-      : '${uang[i].id}.jpg';
+      ? '${dompet.uang[i].id}.png'
+      : '${dompet.uang[i].id}.jpg';
       var image = AssetImage('assets/images/uang/uang-$img');
       var imgH = 64.0;
       var wImage = Image(
         image: image,
         height: imgH,
       );
-      if (uang[i].pos.x == 0 && uang[i].pos.y == 0) {
-        uang[i].pos.x = MediaQuery.of(context).size.width/2 - imgH/2;
-        uang[i].pos.y = MediaQuery.of(context).size.height/2 - imgH - bgH;
+      if (dompet.uang[i].pos.x == 0 && dompet.uang[i].pos.y == 0) {
+        dompet.uang[i].pos.x = MediaQuery.of(context).size.width/2 - imgH/2;
+        dompet.uang[i].pos.y = MediaQuery.of(context).size.height/2 - imgH - bgH;
       }
       items.add(Positioned(
-        left: uang[i].pos.x,
-        top: uang[i].pos.y,
+        left: dompet.uang[i].pos.x,
+        top: dompet.uang[i].pos.y,
         child: Draggable(
           feedback: Container(),
           child: wImage,
+          onDragStarted: () {
+            setState(() {
+              uangIds.remove(i);
+              uangIds = [...uangIds, i];
+              l.d(i, uangIds);
+            });
+          },
           onDragUpdate: (details) {
             setState(() {
-              uang[i].pos.x =  details.globalPosition.dx - 32;
-              uang[i].pos.y =  details.globalPosition.dy - 32;
+              dompet.uang[uangIds.last].pos.x =  details.globalPosition.dx - (imgH / 2);
+              dompet.uang[uangIds.last].pos.y =  details.globalPosition.dy - (imgH / 2);
             });
           },
           onDragEnd: (details) {
@@ -91,7 +99,12 @@ class _DompetAppState extends State<DompetApp> {
     }
     return Stack(
       alignment: Alignment.center,
-      children: items,
+      children: [
+        Center(
+          child: Image(image: bg, height: bgH,),
+        ),
+        ...uangIds.map((id) => items[id]).toList()
+      ],
     );
   }
 }

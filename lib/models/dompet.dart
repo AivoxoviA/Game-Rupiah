@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:game_rupiah/main.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:path_provider/path_provider.dart';
 part 'dompet.g.dart';
@@ -40,7 +39,6 @@ class Dompet {
   Future<File> write() async {
     final file = await _localFile;
     String jsonString = jsonEncode(toJson());
-    l.d(jsonString);
     return file.writeAsString(jsonString);
   }
 
