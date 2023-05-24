@@ -28,7 +28,8 @@ class DompetAppState extends State<DompetApp> {
   List<int> uangIds = [];
 
   AssetImage bg = AssetImage('assets/images/dompet.png');
-  var bgH = 128.0;
+  var ratio = 132.0;
+  var tukarHeightOffset = 2.5;
 
   Future<void> loadData() async {
     final String response = await rootBundle.loadString(
@@ -89,7 +90,7 @@ class DompetAppState extends State<DompetApp> {
       );
       if (dompet.uang[i].pos.x == 0 && dompet.uang[i].pos.y == 0) {
         dompet.uang[i].pos.x = screenWidth/2 - imgH/2;
-        dompet.uang[i].pos.y = screenHeight/2 - imgH - bgH;
+        dompet.uang[i].pos.y = screenHeight/2 - imgH - ratio;
       }
 
       checkExchange(dompet.uang[i]);
@@ -131,12 +132,12 @@ class DompetAppState extends State<DompetApp> {
       children: [
         Positioned(
           left: screenWidth/2 - bgImg.width!/2,
-          top: screenHeight/2,
+          top: screenHeight/1.7,
           child: bgImg,
         ),
         ...uangIds.map((id) => items[id]).toList(),
         Positioned(
-          top: screenHeight/3,
+          top: screenHeight/tukarHeightOffset,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             child: Container(
@@ -147,14 +148,14 @@ class DompetAppState extends State<DompetApp> {
           ),
         ),
         Positioned(
-          top: screenHeight/3 - 6,
+          top: screenHeight/tukarHeightOffset - 6,
           child: Container(
             color: Colors.white,
-            child: Text('Tukar'),
+            child: Text(' Tukar '),
           ),
         ),
         Positioned(
-          top: 8,
+          top: 48.0,
           child: SizedBox(
             width: screenWidth,
             height: 72.0,
@@ -185,7 +186,7 @@ class DompetAppState extends State<DompetApp> {
       return element.nominal == item['nominal'];
     }).size;
     var x = screenWidth/2 - imgH/2;
-    var y = screenHeight/2 - imgH - bgH;
+    var y = screenHeight/2 - imgH - ratio;
     dompet.uang.add(Uang(item['id'], Pos(x, y)));
     setState(() {
       uangIds = [];
@@ -197,7 +198,7 @@ class DompetAppState extends State<DompetApp> {
     if (
       uang.pos.y
       <
-      screenHeight/3 - sizes.singleWhere((element) {
+      screenHeight/tukarHeightOffset - sizes.singleWhere((element) {
         return element.nominal ==_dataUang[uang.id]['nominal'];
       }).size 
     ) {
