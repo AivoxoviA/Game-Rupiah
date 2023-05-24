@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_rupiah/dompet/tukar.dart';
-import 'package:game_rupiah/main.dart';
 import 'package:game_rupiah/models/dompet.dart';
 
 class DompetApp extends StatefulWidget {
@@ -28,7 +27,7 @@ class DompetAppState extends State<DompetApp> {
   List<int> uangIds = [];
 
   AssetImage bg = AssetImage('assets/images/dompet.png');
-  var ratio = 132.0;
+  var ratio = 128.0;
   var tukarHeightOffset = 2.5;
 
   Future<void> loadData() async {
@@ -172,9 +171,6 @@ class DompetAppState extends State<DompetApp> {
   List<Uang> uangToBeExchanged = [];
 
   void exchangeTo(item, ids) {
-    l.d('tukar uang!!!');
-    l.d(ids);
-    l.d(uangToBeExchanged);
     for (var i = 0; i < uangToBeExchanged.length; i++) {
       var uang = uangToBeExchanged[i];
       dompet.uang.remove(uang);

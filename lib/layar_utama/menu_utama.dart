@@ -36,7 +36,7 @@ class _MenuUtamaState extends State<MenuUtama> {
               child: Text(
                 quiz.judul,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 20,
                   color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
@@ -49,14 +49,21 @@ class _MenuUtamaState extends State<MenuUtama> {
   }
 
   List kuis = [
-    Kuis(0, 'Nominal', Color.fromARGB(255, 0, 139, 5)),
-    Kuis(1, 'Gambar', Color.fromARGB(255, 130, 115, 0)),
-    Kuis(2, '+/-', Color.fromARGB(255, 130, 50, 0)),
-    Kuis(3, '×/÷', Color.fromARGB(255, 130, 0, 0)),
+    Kuis(0, '2×', Color.fromARGB(255, 0, 139, 5),   2, 26),
+    Kuis(1, '3×', Color.fromARGB(255, 130, 115, 0), 3, 25),
+    Kuis(2, '4×', Color.fromARGB(255, 130, 50, 0),  4, 24),
+    Kuis(3, '5×', Color.fromARGB(255, 130, 0, 0),   5, 23),
   ];
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> menus = [];
+    for (var menu in kuis) {
+      menus.add(Container(
+        color: menu.warna,
+        child: _buildButtonColumn(menu, context),
+      ));
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Kuis'),
@@ -74,36 +81,7 @@ class _MenuUtamaState extends State<MenuUtama> {
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
-              children:  [
-                Container(
-                  color: kuis[0].warna,
-                  child: _buildButtonColumn(
-                    kuis[0],
-                    context,
-                  ),
-                ),
-                Container(
-                  color: kuis[1].warna,
-                  child: _buildButtonColumn(
-                    kuis[1],
-                    context,
-                  ),
-                ),
-                Container(
-                  color: kuis[2].warna,
-                  child: _buildButtonColumn(
-                    kuis[2],
-                    context,
-                  ),
-                ),
-                Container(
-                  color: kuis[3].warna,
-                  child: _buildButtonColumn(
-                    kuis[3],
-                    context,
-                  ),
-                ),
-              ],
+              children: menus,
             ),
           )
         ],
@@ -116,5 +94,7 @@ class Kuis {
   int id;
   String judul;
   Color warna;
-  Kuis(this.id, this.judul, this.warna);
+  int numberOfQuestions;
+  int rewardId;
+  Kuis(this.id, this.judul, this.warna, this.numberOfQuestions, this.rewardId);
 }

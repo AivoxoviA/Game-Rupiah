@@ -18,6 +18,13 @@ class Quiz extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 8.0, 0, 24.0),
+          child: Text(
+            'Pertanyaan ke-${questionIndex+1}/${questions.length}',
+            textScaleFactor: 1.2,
+          ),
+        ),
         Question(
         questions[questionIndex]['questionText'].toString(),
         ),

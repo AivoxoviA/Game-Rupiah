@@ -50,7 +50,7 @@ class Index extends StatelessWidget {
 
 class IndexState extends ChangeNotifier {
   var state = 0;
-  var indexQuiz = Kuis(-1, 'judul', Colors.black);
+  var indexQuiz = Kuis(-1, 'judul', Colors.black, -1, -1);
 
   getQuiz() {
     return indexQuiz;
